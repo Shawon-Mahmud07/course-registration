@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import Blogs from "./Blogs/Blogs";
+import PropTypes from "prop-types";
 
-const CourseBlogs = () => {
+const CourseBlogs = ({ handleClickBtn }) => {
   const [courseBlogs, setCourseBlogs] = useState([]);
 
   useEffect(() => {
@@ -19,9 +20,9 @@ const CourseBlogs = () => {
   }, []);
 
   return (
-    <div className="w-4/5 mt-8 grid grid-cols-3 gap-5 ">
+    <div className="w-3/4 mt-8 grid grid-cols-3 gap-5 ">
       {courseBlogs.map((blogs, index) => (
-        <Blogs blogs={blogs} key={index}>
+        <Blogs handleClickBtn={handleClickBtn} blogs={blogs} key={index}>
           {" "}
         </Blogs>
       ))}
@@ -29,4 +30,7 @@ const CourseBlogs = () => {
   );
 };
 
+CourseBlogs.propTypes = {
+  handleClickBtn: PropTypes.func.isRequired,
+};
 export default CourseBlogs;

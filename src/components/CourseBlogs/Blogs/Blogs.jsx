@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { FaDollarSign, FaBookOpen } from "react-icons/fa";
-const Blogs = ({ blogs }) => {
+
+const Blogs = ({ blogs, handleClickBtn }) => {
   const { cover, title, details, price, credit } = blogs;
   return (
-    <div className="bg-[#fff]  rounded-lg p-3 space-y-3 basis-1 h-auto ">
+    <div className="bg-[#fff]  rounded-lg p-2 space-y-3 h-auto ">
       <img
         className="w-full"
         src={cover}
@@ -24,14 +25,19 @@ const Blogs = ({ blogs }) => {
         <p>Credit : {credit}hr</p>
       </div>
 
-      <div className="text-center mt-3 bg-[#2F80ED] rounded-md py-2 text-[#FFF] font-semibold text-lg cursor-pointer">
-        <button>Select</button>
-      </div>
+      <button
+        className="text-center bg-[#2F80ED]  w-full rounded-md py-2 text-[#FFF] font-semibold text-lg"
+        onClick={() => handleClickBtn(blogs)}
+      >
+        {" "}
+        Select
+      </button>
     </div>
   );
 };
 
 Blogs.propTypes = {
   blogs: PropTypes.object.isRequired,
+  handleClickBtn: PropTypes.func.isRequired,
 };
 export default Blogs;

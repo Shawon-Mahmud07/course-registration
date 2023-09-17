@@ -1,7 +1,15 @@
+import { useState } from "react";
 import CourseBlogs from "./components/CourseBlogs/CourseBlogs";
 import CourseDetailsCard from "./components/CourseDetailsCard/CourseDetailsCard";
 
 function App() {
+  const [courseTitle, setCourseTitle] = useState([]);
+
+  const handleClickBtn = (blogs) => {
+    const newCourseTitle = [...courseTitle, blogs];
+    setCourseTitle(newCourseTitle);
+  };
+
   return (
     <>
       <div className="max-w-7xl mx-auto mt-10">
@@ -10,12 +18,12 @@ function App() {
           Course Registration
         </h1>
 
-        <div className=" md:flex gap-5 p-4 max-w-7xl mx-auto ">
+        <div className=" md:flex gap-5 p-3 max-w-7xl mx-auto ">
           {/* Course Blogs Section*/}
-          <CourseBlogs></CourseBlogs>
+          <CourseBlogs handleClickBtn={handleClickBtn}></CourseBlogs>
 
           {/* Course Card Section */}
-          <CourseDetailsCard></CourseDetailsCard>
+          <CourseDetailsCard courseTitle={courseTitle}></CourseDetailsCard>
         </div>
       </div>
     </>
