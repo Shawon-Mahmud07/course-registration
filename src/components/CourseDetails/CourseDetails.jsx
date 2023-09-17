@@ -13,7 +13,7 @@ const CourseDetails = ({
         <hr />
       </div>
 
-      <div>
+      <div className="mb-2">
         <h2 className="text-[#1C1B1B] text-xl font-bold">Course Name</h2>
       </div>
 
