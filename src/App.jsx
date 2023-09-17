@@ -6,12 +6,26 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [courseTitle, setCourseTitle] = useState([]);
+  const [remaining, setRemaining] = useState(0);
+  const [totalCredit, setTotalCredit] = useState(0);
 
   const handleClickBtn = (blogs) => {
     const isExist = courseTitle.find((item) => item.id == blogs.id);
+    let credit = blogs.credit;
+
     if (isExist) {
       return toast.error("Already added");
     } else {
+      courseTitle.forEach((item) => {
+        credit = credit + item.credit;
+      });
+    }
+    const newRemaining = 20 - credit;
+    if (credit > 20) {
+      return toast.error("credit limit 20hr");
+    } else {
+      setRemaining(newRemaining);
+      setTotalCredit(credit);
       const newCourseTitle = [...courseTitle, blogs];
       setCourseTitle(newCourseTitle);
     }
@@ -31,7 +45,11 @@ function App() {
           <CourseBlogs handleClickBtn={handleClickBtn}></CourseBlogs>
 
           {/* Course Card Section */}
-          <CourseDetailsCard courseTitle={courseTitle}></CourseDetailsCard>
+          <CourseDetailsCard
+            remaining={remaining}
+            totalCredit={totalCredit}
+            courseTitle={courseTitle}
+          ></CourseDetailsCard>
         </div>
       </div>
     </>

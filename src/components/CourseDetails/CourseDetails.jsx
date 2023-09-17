@@ -1,9 +1,13 @@
 import PropTypes from "prop-types";
-const CourseDetails = ({ courseTitle }) => {
+const CourseDetails = ({
+  courseTitle,
+  totalCredit,
+  remaining = { remaining },
+}) => {
   return (
     <div className="px-5 pt-5 ">
       <h2 className="text-[#2F80ED] text-lg font-bold">
-        Credit Hour Remaining hr
+        Credit Hour Remaining {remaining} hr
       </h2>
       <div className="my-5">
         <hr />
@@ -24,7 +28,7 @@ const CourseDetails = ({ courseTitle }) => {
         <hr />
       </div>
       <p className="mb-5 text-base font-medium text-[#1C1B1B99]">
-        Total Credit Hour :{" "}
+        Total Credit Hour: {totalCredit}
       </p>
       <hr />
     </div>
@@ -32,5 +36,7 @@ const CourseDetails = ({ courseTitle }) => {
 };
 CourseDetails.propTypes = {
   courseTitle: PropTypes.array.isRequired,
+  totalCredit: PropTypes.number.isRequired,
+  remaining: PropTypes.number.isRequired,
 };
 export default CourseDetails;
